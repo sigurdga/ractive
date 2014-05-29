@@ -126,16 +126,18 @@ define([
 			var changed;
 
 			this.args.forEach( function ( arg ) {
-				var changedKeypath;
+				if (arg) {
+					var changedKeypath;
 
-				if ( arg.keypath && ( changedKeypath = getNewKeypath( arg.keypath, oldKeypath, newKeypath ) ) ) {
-					arg.keypath = changedKeypath;
-					changed = true;
-				}
+					if ( arg.keypath && ( changedKeypath = getNewKeypath( arg.keypath, oldKeypath, newKeypath ) ) ) {
+						arg.keypath = changedKeypath;
+						changed = true;
+					}
 
-				else if ( arg.indexRef === indexRef ) {
-					arg.value = newIndex;
-					changed = true;
+					else if ( arg.indexRef === indexRef ) {
+						arg.value = newIndex;
+						changed = true;
+					}
 				}
 			});
 
